@@ -1,11 +1,13 @@
 from django.urls import path
 from . import views
-from .views import pageListView, pageDetailView, PageCreate
+from .views import PageListView, PageDetailView, PageCreate, PageUpdateView, PageDelete
 
 
 
 pages_patterns = ([
-    path('', pageListView.as_view(), name='pages'),
-    path('<int:pk>/<slug:slug>/', pageDetailView.as_view(), name='page'),
+    path('', PageListView.as_view(), name='pages'),
+    path('<int:pk>/<slug:slug>/', PageDetailView.as_view(), name='page'),
     path('create/', PageCreate.as_view(), name='create'),
+    path('update/<int:pk>/', PageUpdateView.as_view(), name='update'),
+    path('delete/<int:pk>/', PageDelete.as_view(), name='delete'),
 ], 'pages')
